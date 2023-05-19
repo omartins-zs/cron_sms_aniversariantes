@@ -35,6 +35,16 @@ include_once './conexao.php';
             echo "Nome: $nome <br>";
             echo "E-mail: $email <br>";
             echo "Data de nascimento: " . date('d/m/Y', strtotime($data_nascimento)) . " <br>";
+
+            // codifica os dados no formato de um formulário www
+            $mensagem = urlencode("$nome, PARABENS!!! A Gabriel Desenvolvimento deseja a voce um Feliz Aniversario, com muita alegria, sucesso e saude.");
+            // concatena a url da api com a variável carregando o conteúdo da mensagem
+            $url_api = "http://api.iagentesms.com.br/webservices/http.php?metodo=envio&usuario=gabrielmatheus@casasandreluiz.org.br&senha=zika2023&celular=11955772940&mensagem={$mensagem}";
+            // realiza a requisição http passando os parâmetros informados
+            $api_http = file_get_contents($url_api);
+            // imprime o resultado da requisição
+            echo $api_http;
+
             echo "<hr>";
 
             // var_dump(($row_usuario));
