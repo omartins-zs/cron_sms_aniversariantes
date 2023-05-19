@@ -24,6 +24,8 @@ include_once './conexao.php';
     $result_usuarios->execute();
 
     if (($result_usuarios) and ($result_usuarios->rowCount() != 0)) {
+    } else {
+        echo  "<p style='color: #f00;'>Nenhum aniversariante encontrado</p>";
     }
 
     ?>
