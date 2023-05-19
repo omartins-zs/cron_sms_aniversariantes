@@ -18,12 +18,17 @@ include_once './conexao.php';
     <h1 class="display-4">Listar Aniversariantes do Dia</h1>
 
     <?php
-    $query_usuarios = "SELECT * FROM usuarios ";
+    $query_usuarios = "SELECT id, nome, email, data_nascimento
+                         FROM usuarios
+                     /* WHERE id = 100 */";
 
     $result_usuarios =  $conn->prepare($query_usuarios);
     $result_usuarios->execute();
 
     if (($result_usuarios) and ($result_usuarios->rowCount() != 0)) {
+        while ($row_usuario = $result_usuarios->fetch(PDO::FETCH_ASSOC)) {
+            var_dump(($row_usuario));
+        }
     } else {
         echo  "<p style='color: #f00;'>Nenhum aniversariante encontrado</p>";
     }
